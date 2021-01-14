@@ -1,7 +1,7 @@
 module Erp::QuickOrders
   class QuickOrderMailer < Erp::ApplicationMailer
     helper Erp::ApplicationHelper
-    helper Erp::OnlineStore::ApplicationHelper
+    # helper Erp::OnlineStore::ApplicationHelper
     
     def sending_admin_email_order_confirmation(quick_order)
       @recipients = ['Hùng Nguyễn <hungnt@hoangkhang.com.vn>', 'Luân Phạm <luanpm@hoangkhang.com.vn>', 'Sơn Nguyễn <sonnn@hoangkhang.com.vn>']
