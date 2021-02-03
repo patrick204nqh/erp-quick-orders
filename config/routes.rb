@@ -4,8 +4,11 @@ Erp::QuickOrders::Engine.routes.draw do
       resources :orders do
         collection do
           post 'list'
-					get 'order_details'
-					delete 'delete_all'
+          get 'order_details'
+          put 'set_status_pending'
+          put 'set_status_confirmed'
+          put 'set_status_done'
+          put 'set_status_canceled'
         end
       end
     end

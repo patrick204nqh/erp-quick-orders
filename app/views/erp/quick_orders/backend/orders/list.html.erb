@@ -20,10 +20,15 @@
                 <th class="sortable" sort-by='erp_quick_orders_orders.created_at'>
                     <%= t('.order_date') %>
                 </th>
-            <% end %>            
+            <% end %>
             <% if get_columns(params).include?("total") %>
                 <th>
                     <%= t('.total') %>
+                </th>
+            <% end %>
+            <% if get_columns(params).include?("status") %>
+                <th>
+                    <%= t('.status') %>
                 </th>
             <% end %>
             <th width="7%"><%= t('actions') %></th>
@@ -52,23 +57,61 @@
                 <% end %>
                 <% if get_columns(params).include?("order_date") %>
                     <td><%= order.created_at.strftime("%d/%m/%Y %I:%M%p") %></td>
-                <% end %>                
+                <% end %>
                 <% if get_columns(params).include?("total") %>
                     <td><strong class="format-price"><%= format_price(order.cache_total) %></strong></td>
                 <% end %>
+                <% if get_columns(params).include?("status") %>
+                    <td>
+                        <% if order.status == Erp::QuickOrders::Order::STATUS_NEW %>
+                        <span class="label label-warning"><%= t(".#{order.status}") %></span>
+                        <% elsif order.status == Erp::QuickOrders::Order::STATUS_PENDING %>
+                        <span class="label label-default"><%= t(".#{order.status}") %></span>
+                        <% elsif order.status == Erp::QuickOrders::Order::STATUS_CONFIRMED %>
+                        <span class="label label-primary"><%= t(".#{order.status}") %></span>
+                        <% elsif order.status == Erp::QuickOrders::Order::STATUS_DONE %>
+                        <span class="label label-success"><%= t(".#{order.status}") %></span>
+                        <% elsif order.status == Erp::QuickOrders::Order::STATUS_CANCELED %>
+                        <span class="label label-danger"><%= t(".#{order.status}") %></span>
+                        <% end %>
+                    </td>
+                <% end %>
                 <td>
-                    <%
-                        actions = []
-                        actions << {
-                            text: '<i class="fa fa-trash"></i> '+t('.delete'),
-                            url: erp_quick_orders.backend_order_path(order),
-                            data_method: 'DELETE',
-                            class: 'ajax-link',
-                            data_confirm: t('delete_confirm')
-                        }
-                    %>
                     <%= erp_datalist_row_actions(
-                        actions
+                        [
+                            {
+                                text: '<i class="fa fa-ellipsis-h"></i> '+t('.status_pending'),
+                                url: erp_quick_orders.set_status_pending_backend_orders_path(id: order),
+                                data_method: 'PUT',
+                                class: 'ajax-link',
+                                data_confirm: t('.update_status_confirm'),
+                                hide: order.is_pending?
+                            },
+                            {
+                                text: '<i class="fa fa-check"></i> '+t('.status_confirmed'),
+                                url: erp_quick_orders.set_status_confirmed_backend_orders_path(id: order),
+                                data_method: 'PUT',
+                                class: 'ajax-link',
+                                data_confirm: t('.update_status_confirm'),
+                                hide: order.is_confirmed?
+                            },
+                            {
+                                text: '<i class="fa fa-check-square-o"></i> '+t('.status_done'),
+                                url: erp_quick_orders.set_status_done_backend_orders_path(id: order),
+                                data_method: 'PUT',
+                                class: 'ajax-link',
+                                data_confirm: t('.update_status_confirm'),
+                                hide: order.is_done?
+                            },
+                            {
+                                text: '<i class="fa fa-ban"></i> '+t('.status_canceled'),
+                                url: erp_quick_orders.set_status_canceled_backend_orders_path(id: order),
+                                data_method: 'PUT',
+                                class: 'ajax-link',
+                                data_confirm: t('.update_status_confirm'),
+                                hide: order.is_canceled?
+                            }
+                        ]
                     ) %>
                 </td>
             </tr>
@@ -79,5 +122,5 @@
 <% if @orders.empty? %>
     <div class="datalist-empty-line"><%= t('.no_matching_records_found') %></div>
 <% end %>
-    
+
 <%= erp_datalist_pagination(@orders) %>

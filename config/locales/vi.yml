@@ -15,7 +15,8 @@ vi:
             note: "Ghi chú"
             order_date: "Ngày đặt"
             total: "Tổng tiền"
-            delete: "Xóa đơn hàng"
+            status: "Trạng thái"
+            delete: "Xóa đơn hàng đã chọn"
           list:
             code: "Mã đơn hàng"
             customer: "Tên khách hàng"
@@ -23,10 +24,33 @@ vi:
             note: "Ghi chú"
             order_date: "Ngày đặt"
             total: "Tổng tiền"
+            status: "Trạng thái"
             delete: "Xóa đơn hàng"
+            status_pending: "Tiếp nhận đơn hàng"
+            status_confirmed: "Xác nhận đơn hàng"
+            status_done: "Hoàn thành"
+            status_canceled: "Hủy đơn hàng"
+            update_status_confirm: "Xác nhận cập nhật trạng thái đơn hàng"
+            new: "Mới"
+            pending: "Đang chờ"
+            confirmed: "Xác nhận"
+            done: "Hoàn thành"
+            canceled: "Đã hủy"
           order_details:
             product_code: "Mã sản phẩm"
             product_name: "Tên sản phẩm"
             price: "Giá sản phẩm"
             quantity: "Số lượng đặt"
             total: "Thành tiền"
+          set_status_pending:
+            success: "Cập nhật trạng thái đang chờ thành công"
+            error: "Cập nhật trạng thái không thành công"
+          set_status_confirmed:
+            success: "Cập nhật trạng thái đã xác nhận thành công"
+            error: "Cập nhật trạng thái không thành công"
+          set_status_done:
+            success: "Cập nhật trạng thái hoàn thành thành công"
+            error: "Cập nhật trạng thái không thành công"
+          set_status_canceled:
+            success: "Cập nhật trạng thái đã hủy thành công"
+            error: "Cập nhật trạng thái không thành công"

@@ -14,12 +14,12 @@
         }
     ],
     actions: [
-        {
-            text: '<i class="fa fa-trash"></i> '+t('.delete'),
-            url: erp_quick_orders.delete_all_backend_orders_path,
-            data_method: 'DELETE',
-            data_confirm: t('delete_confirm')
-        }
+        # {
+        #     text: '<i class="fa fa-refresh"></i> '+t('.update'),
+        #     url: erp_quick_orders.update_status_all_backend_orders_path,
+        #     data_method: 'PUT',
+        #     data_confirm: t('update_status_confirm')
+        # }
     ],
     columns: [
         {
@@ -39,6 +39,9 @@
         },
         {
             text: t('.total'), name: 'total', value: true, checked: true
+        },
+        {
+            text: t('.status'), name: 'status', value: true, checked: true
         }
     ]
 ) %>
