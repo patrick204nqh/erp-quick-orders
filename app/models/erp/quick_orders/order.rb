@@ -118,19 +118,19 @@ module Erp::QuickOrders
 
     # set status pending
     def set_status_pending
-      update(status: Erp::QuickOrders::Order::STATUS_PENDING)
+      update_attributes(status: Erp::QuickOrders::Order::STATUS_PENDING)
     end
     # set status confirmed
     def set_status_confirmed
-      update(status: Erp::QuickOrders::Order::STATUS_CONFIRMED)
+      update_attributes(status: Erp::QuickOrders::Order::STATUS_CONFIRMED)
     end
     # set status done
     def set_status_done
-      update(status: Erp::QuickOrders::Order::STATUS_DONE)
+      update_attributes(status: Erp::QuickOrders::Order::STATUS_DONE)
     end
     # set status canceled
     def set_status_canceled
-      update(status: Erp::QuickOrders::Order::STATUS_CANCELED)
+      update_attributes(status: Erp::QuickOrders::Order::STATUS_CANCELED)
     end
 
     # check if order is pending
